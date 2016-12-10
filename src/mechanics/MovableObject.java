@@ -25,8 +25,8 @@ public class MovableObject extends Object{
 	private long lastNow;
 	private int deltaT = 1;
 	
-	public MovableObject(int x, int y, Dimension size, int imgType, int imageID, int collisionLayerID) {
-		super(x, y, size, imgType, imageID, collisionLayerID,true);
+	public MovableObject(int x, int y, Dimension size, int imgType, int imageID, int collisionLayerID, String tag) {
+		super(x, y, size, imgType, imageID, collisionLayerID,true, tag);
 		xf = x;
 		yf = y;
 	}
@@ -143,6 +143,11 @@ public class MovableObject extends Object{
 			return (CollisionSide.UP);
 		}
 		return (CollisionSide.NO_COLLISION);
+	}
+	
+	@Override
+	public String getType() {
+		return (this.getClass().toString());
 	}
 }
 

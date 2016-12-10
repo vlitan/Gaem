@@ -18,14 +18,16 @@ public class Main{
    private static MovableObject player;
    private static Object obstacle;
    private static CollisionManger collisionManager;
-   
+   private static Map map;
    public static void main(String[] args){
 	   prepareGUI();
-	   player = new MovableObject(30, 30, new Dimension(40,80), 0, 0, 0);
-	   obstacle = new Object(size.width/3, size.height/3, new Dimension(200,300), 0, 1, 0,false);
+	   player = new MovableObject(30, 30, new Dimension(40,80), 0, 0, 0, "player");
+	   obstacle = new Object(size.width/3, size.height/3, new Dimension(200,300), 0, 1, 0,false, "obstacke");
 	   collisionManager = new CollisionManger();
-	   collisionManager.addObject(player);
-	   collisionManager.addObject(obstacle);
+	   map = new Map("Data/Maps/Level01");
+	   map.readObjects();
+	   map.add(player);
+	   collisionManager.addObjects(map);
 	   run();
    }
    
@@ -34,8 +36,7 @@ public class Main{
 		   rend.clear(now());
 		   player.executeCommands(input.getCommands(), now());
 		   collisionManager.manageCollisions();
-		   rend.drawObject(player);
-		   rend.drawObject(obstacle);
+		   rend.drawObjects(map);
 		 //  System.out.println("[Main] " + input.toStringComms());
 	   }
    }

@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -39,9 +41,9 @@ public class Renderer {
 		}
 	}
 
-	public void drawObjectArray(Object[] obj) {
-		for (int i = 0; i < obj.length; i++) {
-			drawObject(obj[i]);
+	public void drawObjects(ArrayList<Object> objs) {
+		for (Object o : objs) {
+			drawObject(o);
 		}
 	}
 	

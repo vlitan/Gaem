@@ -6,7 +6,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 @SuppressWarnings("serial")
-public class Object extends Rectangle {
+public class Object extends Rectangle{
 	private int imageID;
 	private int imgType; // 0 = generic image, 1 = level image
 	private int collisionLayerID;
@@ -14,8 +14,9 @@ public class Object extends Rectangle {
 	protected float xf;
 	protected float yf;
 	protected boolean collidable;
+	protected String tag;
 	
-	public Object(int x, int y, Dimension size, int imgType, int imageID, int collisionLayerID, boolean isMovable) {
+	public Object(int x, int y, Dimension size, int imgType, int imageID, int collisionLayerID, boolean isMovable, String tag) {
 		this.x = x;
 		this.y = y;
 		this.setSize(size);
@@ -23,6 +24,7 @@ public class Object extends Rectangle {
 		this.setImageID(imageID);
 		this.setCollisionLayerID(collisionLayerID);
 		movable = isMovable;
+		this.tag = tag;
 	}
 
 
@@ -108,5 +110,46 @@ public class Object extends Rectangle {
 
 	public void setCollisionLayerID(int collisionLayerID) {
 		this.collisionLayerID = collisionLayerID;
+	}
+
+	public String getType() {
+		return (this.getClass().toString());
+	}
+
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public boolean isMovable() {
+		return movable;
+	}
+
+
+	public void setMovable(boolean movable) {
+		this.movable = movable;
+	}
+
+
+	public String getTag() {
+		return tag;
+	}
+
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+
+
+	public void setHeight(int height) {
+		this.height = height;
 	}
 }

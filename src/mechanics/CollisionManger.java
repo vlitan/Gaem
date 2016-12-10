@@ -36,6 +36,12 @@ public class CollisionManger {
 		layers.get(obj.getCollisionLayerID()).add(obj);
 	}
 	
+	public void addObjects(ArrayList<Object> objs){
+		for (Object o : objs){
+			addObject(o);
+		}
+	}
+	
 	public void removeObject(Object obj){
 		layers.get(obj.getCollisionLayerID()).remove(obj);
 	}
