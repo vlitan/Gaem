@@ -10,7 +10,7 @@ public class MovableObject extends Object{
 
 	private float xSpeedIncrement = 0.02f;
 	private float ySpeedIncrement = 0.02f;
-	private float jumpIncrement = 5;
+	private float jumpIncrement = 0.2f;
 	private float frictionCoefficient = 0.97f;
 	private float gravityForce = 3;
 	private float xMaxSpeed = 10;
@@ -19,6 +19,7 @@ public class MovableObject extends Object{
 	private float ySpeed = 0;
 	protected float lastXf;
 	protected float lastYf;
+	
 
 	
 	//all in ms
@@ -65,7 +66,7 @@ public class MovableObject extends Object{
 
 	public void interact(Object obj){
 		switch (obj.getClass().toString()){
-		case (ClassConsts.MOVABLE_OBJECT) : interact(obj); break;
+		case (ClassConsts.MOVABLE_OBJECT) : System.out.println("sam"); break;
 		default : collide(obj);
 		}
 	}
@@ -74,7 +75,7 @@ public class MovableObject extends Object{
 		System.out.println("[MovableObject] interact with another MovableObject");
 	}
 	
-	public void collide(Object obj){
+	protected void collide(Object obj){
 		switch(getCollisionSideA(obj)){
 		case LEFT: this.setX((int) (obj.getX() - this.getWidth()));//System.out.println("Left");
 			break;

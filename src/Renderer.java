@@ -27,9 +27,9 @@ public class Renderer {
 	public void loadGenericImages() {
 		int n = 0;
 		img = new BufferedImage[4];
-		loadGenericImage(n++, "Data/Images/LeftWalk.png"); // 0
+		loadGenericImage(n++, "Data/Images/LeftWalk.png");  // 0
 		loadGenericImage(n++, "Data/Images/RightWalk.png"); // 1
-		loadGenericImage(n++, "Data/Images/LeftJump.png"); // 2
+		loadGenericImage(n++, "Data/Images/LeftJump.png");  // 2
 		loadGenericImage(n++, "Data/Images/RightJump.png"); // 3
 	}
 
@@ -61,4 +61,6 @@ public class Renderer {
 			lastNow = now;
 		}
 	}
+	
+	
 }

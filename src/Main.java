@@ -2,8 +2,10 @@
 
 import gameInput.*;
 import mechanics.CollisionManger;
+import mechanics.Enemy;
 import mechanics.MovableObject;
 import mechanics.Object;
+import mechanics.Player;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -15,18 +17,22 @@ public class Main{
    private static KeyboardListener input; 
    private static Renderer rend;
    private static Dimension size;
-   private static MovableObject player;
+   private static Player player;
+   private static Enemy enemy;
    private static Object obstacle;
    private static CollisionManger collisionManager;
    private static Map map;
    public static void main(String[] args){
 	   prepareGUI();
-	   player = new MovableObject(30, 30, new Dimension(40,80), 0, 0, 0, "player");
-	   obstacle = new Object(size.width/3, size.height/3, new Dimension(200,300), 0, 1, 0,false, "obstacke");
+	   player = new Player(30, 30, new Dimension(40,80), 0, 0, 0, "player");
+	   enemy = new Enemy(600, 30, new Dimension(40,80), 0, 0, 0, "enemy");
+	  // obstacle = new Object(size.width/3, size.height/3, new Dimension(200,300), 0, 1, 0,false, "obstacke");
 	   collisionManager = new CollisionManger();
+	   
 	   map = new Map("Data/Maps/Level01");
 	   map.readObjects();
 	   map.add(player);
+	   map.add(enemy);
 	   collisionManager.addObjects(map);
 	   run();
    }
@@ -37,7 +43,6 @@ public class Main{
 		   player.executeCommands(input.getCommands(), now());
 		   collisionManager.manageCollisions();
 		   rend.drawObjects(map);
-		 //  System.out.println("[Main] " + input.toStringComms());
 	   }
    }
 

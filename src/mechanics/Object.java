@@ -31,6 +31,8 @@ public class Object extends Rectangle{
 	public void interact(Object obj){
 		switch (this.getClass().toString()){
 		case (ClassConsts.MOVABLE_OBJECT) : ((MovableObject)this).interact(obj); break;
+		case (ClassConsts.ENEMY) : ((Enemy)this).interact(obj); break;
+		case (ClassConsts.PLAYER) : ((Player)this).interact(obj); break;
 		default: this.collide(obj);
 		}
 	}
