@@ -1,4 +1,4 @@
 Object - x:10, y:500, width:2000, height:300, imgType:0, imageID:1, collisionLayerID:0, movable:false, tag:SUper;
 Object - x:500, y:100, width:200, height:100, imgType:0, imageID:3, collisionLayerID:0, movable:false, tag:SUper;
 Object - x:100, y:200, width:100, height:200, imgType:0, imageID:0, collisionLayerID:0, movable:false, tag:SUper;
-Object - x:600, y:500, width:200, height:300, imgType:0, imageID:2, collisionLayerID:0, movable:false, tag:SUper;
+//Object - x:600, y:500, width:200, height:300, imgType:0, imageID:2, collisionLayerID:0, movable:false, tag:SUper;

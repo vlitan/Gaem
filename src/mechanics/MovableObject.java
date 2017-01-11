@@ -19,9 +19,10 @@ public class MovableObject extends Object{
 	private float ySpeed = 0;
 	protected float lastXf;
 	protected float lastYf;
+	private AnimationComputer animationComputer;
+	ArrayList<PlayerCommand> commands;
 	
 
-	
 	//all in ms
 	private long lastNow;
 	private int deltaT = 1;
@@ -30,10 +31,16 @@ public class MovableObject extends Object{
 		super(x, y, size, imgType, imageID, collisionLayerID,true, tag);
 		xf = x;
 		yf = y;
+		animationComputer = new AnimationComputer(tag);
+	}
+	
+	public String getCurrentAnimation(){
+		return (animationComputer.getAnimation(this.x, this.y, commands));
 	}
 	
 	/*runs a list of commands*/
 	public void executeCommands(ArrayList<PlayerCommand> commands, long now){
+		this.commands = commands;
 		if (now < lastNow){
 			lastNow = Long.MAX_VALUE - lastNow + now;
 			System.out.println("[Creature] ROLL OVER!");
@@ -42,13 +49,23 @@ public class MovableObject extends Object{
 			
 			lastXf = xf;
 			lastYf = yf;
-			
+		
 			for (PlayerCommand com : commands){
-				if (com == PlayerCommand.LEFT) xSpeed -= xSpeedIncrement;
-				if (com == PlayerCommand.RIGHT) xSpeed += xSpeedIncrement;
-				if (com == PlayerCommand.UP) ySpeed -= ySpeedIncrement;
-				if (com == PlayerCommand.DOWN) ySpeed += ySpeedIncrement;
-				if (com == PlayerCommand.SHOOT) ySpeed -= jumpIncrement;
+				if (com == PlayerCommand.LEFT){
+					xSpeed -= xSpeedIncrement;
+				}
+				if (com == PlayerCommand.RIGHT){
+					xSpeed += xSpeedIncrement;
+				}
+				if (com == PlayerCommand.UP){
+					ySpeed -= ySpeedIncrement;
+				}
+				if (com == PlayerCommand.DOWN){
+					ySpeed += ySpeedIncrement;
+				}
+				if (com == PlayerCommand.SHOOT){
+					ySpeed -= jumpIncrement;
+				}
 			}
 			speedToBounds();
 			friction();

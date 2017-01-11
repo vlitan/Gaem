@@ -15,6 +15,8 @@ public class Object extends Rectangle{
 	protected float yf;
 	protected boolean collidable;
 	protected String tag;
+	private int animationIndex = 0;
+	public long lastNow = 0;
 	
 	public Object(int x, int y, Dimension size, int imgType, int imageID, int collisionLayerID, boolean isMovable, String tag) {
 		this.x = x;
@@ -71,6 +73,11 @@ public class Object extends Rectangle{
 			xf = x;
 			yf = y;
 		}*/
+	}
+	
+	public void changeImage(int imageID){
+		this.setImageID(imageID);
+		this.setAnimationIndex(0);
 	}
 	
 	public Point getUpLeft(){
@@ -153,5 +160,27 @@ public class Object extends Rectangle{
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+	
+	public int getAnimationIndex() {
+		return animationIndex;
+	}
+
+
+	public void setAnimationIndex(int animationIndex) {
+		this.animationIndex = animationIndex;
+	}
+	
+	public void setNextAnimationIndex(int current, int next, int animationDeltaT, long now){
+	   	if (now < lastNow){
+			lastNow = Long.MAX_VALUE - lastNow + now;
+			System.out.println("[Creature] ROLL OVER!");
+		}
+		if (now - lastNow > animationDeltaT){
+			lastNow = now;
+			animationIndex = next;
+		}
+		else 
+			animationIndex = current;
 	}
 }
